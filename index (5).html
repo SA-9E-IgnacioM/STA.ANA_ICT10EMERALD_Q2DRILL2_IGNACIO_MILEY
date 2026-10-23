@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.3.1/core.css" />
+    <script type="module" src="https://pyscript.net/releases/2024.3.1/core.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+    <!-- Google Fonts: Poppins (body) and Playfair Display (headings) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Golden Hour Collective | Photography Club Members</title>
+    <style>
+        /* Color scheme: mint #D4FFF7 and dark brown #3B2309 */
+        :root {
+            --mint: #D4FFF7;
+            --brown: #3B2309;
+        }
+        body {
+            background-color: var(--mint);
+            color: var(--brown);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+        h3, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        .card {
+            background-color: var(--brown);
+            color: var(--mint);
+            border: 3px solid var(--brown);
+            border-radius: 1rem;
+        }
+        .card-header {
+            background-color: var(--brown);
+            color: var(--mint);
+            border-bottom: 2px solid var(--mint);
+        }
+        .club-name {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin: 0;
+            opacity: 0.85;
+        }
+        .form-control {
+            background-color: var(--mint);
+            color: var(--brown);
+            border: 2px solid var(--mint);
+        }
+        .form-control::placeholder {
+            color: var(--brown);
+            opacity: 0.6;
+        }
+        .form-control:focus {
+            background-color: var(--mint);
+            color: var(--brown);
+            border-color: var(--mint);
+            box-shadow: 0 0 0 0.25rem rgba(212, 255, 247, 0.45);
+        }
+        .btn-club {
+            background-color: var(--mint);
+            color: var(--brown);
+            border: 2px solid var(--mint);
+            font-weight: 600;
+        }
+        .btn-club:hover {
+            background-color: var(--brown);
+            color: var(--mint);
+            border-color: var(--mint);
+        }
+        #output {
+            min-height: 80px;
+            background-color: var(--mint);
+            color: var(--brown);
+            border: 2px solid var(--mint);
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5" style="max-width: 640px;">
+        <div class="card shadow-lg">
+
+            <!-- Header: logo on the LEFT, club name and title on the right -->
+            <div class="card-header d-flex align-items-center gap-3 py-3">
+                <!-- Logo: camera lens / aperture drawn in SVG (mint + brown only) -->
+                <svg width="70" height="70" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-label="Golden Hour Collective logo" role="img">
+                    <circle cx="32" cy="32" r="30" fill="#D4FFF7"/>
+                    <circle cx="32" cy="32" r="25" fill="#3B2309"/>
+                    <circle cx="32" cy="32" r="14" fill="#D4FFF7"/>
+                    <circle cx="32" cy="32" r="8" fill="#3B2309"/>
+                    <circle cx="35" cy="29" r="2.5" fill="#D4FFF7"/>
+                    <!-- aperture blades -->
+                    <g stroke="#D4FFF7" stroke-width="2" stroke-linecap="round">
+                        <line x1="46" y1="32" x2="54" y2="32"/>
+                        <line x1="39" y1="44.12" x2="43" y2="51.05"/>
+                        <line x1="25" y1="44.12" x2="21" y2="51.05"/>
+                        <line x1="18" y1="32" x2="10" y2="32"/>
+                        <line x1="25" y1="19.88" x2="21" y2="12.95"/>
+                        <line x1="39" y1="19.88" x2="43" y2="12.95"/>
+                    </g>
+                </svg>
+
+                <div class="text-start">
+                    <p class="club-name">Golden Hour Collective</p>
+                    <h3 class="m-0">Photography Club Members</h3>
+                </div>
+            </div>
+
+            <div class="card-body p-4">
+                <h5 class="mb-3">Add new club member:</h5>
+                <form class="mb-4" onsubmit="return false;">
+                    <div class="mb-3">
+                        <input type="text" id="first_name" class="form-control" placeholder="Enter the first name">
+                    </div>
+                    <div class="mb-3">
+                        <input type="text" id="last_name" class="form-control" placeholder="Enter the last name">
+                    </div>
+                    <!-- PyScript event: calls result_checker in main.py -->
+                    <input type="button" value="Submit" py-click="result_checker" class="btn btn-club w-100">
+                </form>
+
+                <!-- Results are written here by main.py -->
+                <div id="output" class="p-3 rounded"></div>
+            </div>
+        </div>
+    </div>
+
+    <py-script src="main.py"></py-script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
